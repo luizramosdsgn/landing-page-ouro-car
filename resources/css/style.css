@@ -6,10 +6,10 @@
 :root {
   --primary: #d9b558; /* Dourado/Amarelo Ouro */
   --primary-hover: #b89130;
+  --btn-cor: #16b011;
   --text-dark: #191919;
   --text-muted: #62615c;
-  --bg-light: #f8f7f3;
-  --bg-white: #ffffff;
+  --bg-white: #f8f7f3;
   --radius: 8px;
   --transition: all 0.3s ease;
 }
@@ -25,7 +25,7 @@ html {
 }
 
 body {
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Montserrat", "Noto Sans", sans-serif;
   background-color: var(--bg-white);
   color: var(--text-dark);
   line-height: 1.6;
@@ -53,9 +53,12 @@ a {
   text-decoration: none;
 }
 
+p:not(b.gradient) {
+  opacity: 0.8;
+}
+
 .container {
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -63,6 +66,7 @@ a {
 /* Utilidades de Texto */
 .gradient {
   background: linear-gradient(90deg, #d9b558, #ff9900);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 900;
@@ -91,13 +95,13 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--primary);
-  color: #000;
-  padding: 16px 40px;
+  background-color: var(--btn-cor);
+  color: var(--bg-white);
+  padding: 1rem 2rem;
   font-size: 1rem;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  border-radius: 50px;
+  border-radius: 0.35rem;
   border: none;
   cursor: pointer;
   transition:
@@ -105,71 +109,77 @@ a {
     background-color 0.3s ease,
     box-shadow 0.3s ease;
   text-transform: uppercase;
-  box-shadow: 0 4px 15px rgba(217, 181, 88, 0.3);
   text-align: center;
 }
 
 .btn:hover {
-  background-color: var(--primary-hover);
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(217, 181, 88, 0.5);
+  box-shadow: 0 6px 20px #5adc5530;
 }
 
 /* =========================================
            Seção Hero
            ========================================= */
 .hero {
-  padding: 60px 0;
   background-color: var(--text-dark);
   overflow: hidden;
   margin: 1rem;
+  padding: 3rem 2rem 3rem 6rem;
   border-radius: var(--radius);
-}
+  height: 95dvh;
 
-.hero .container {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  flex-wrap: wrap;
+
+  .container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 }
 
 .hero-content {
-  flex: 1 1 500px;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+
+  .hero-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 
 .hero-logo {
-  max-width: 250px;
-  margin-bottom: 40px;
+  max-width: 200px;
 }
 
 .hero h1 {
   font-size: 2.2rem;
   line-height: 1.2;
-  margin-bottom: 20px;
+  color: var(--bg-white);
 }
 
 .hero p {
   font-size: 1.1rem;
-  color: var(--text-muted);
-  margin-bottom: 20px;
+  color: var(--bg-white);
 }
 
 .chart-container {
-  max-width: 100%;
   height: 200px;
-  margin: 20px 0;
 }
 
 .hero-image {
-  flex: 1 1 400px;
+  width: 60%;
   display: flex;
   justify-content: center;
-  position: relative;
-}
-
-.hero-image img {
-  transform: scale(1.1) translateX(20px);
+  align-items: center;
 }
 
 /* =========================================
@@ -177,8 +187,12 @@ a {
            ========================================= */
 .features {
   padding: 80px 0;
-  background-color: var(--bg-light);
+  background-color: var(--bg-white);
   text-align: center;
+
+  .container {
+    max-width: 1200px;
+  }
 }
 
 .features h2 {
@@ -196,22 +210,21 @@ a {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
-  margin-bottom: 50px;
+  margin: 50px 0;
 }
 
 .feature-card {
   background-color: var(--bg-white);
-  padding: 40px 30px;
+  padding: 40px 40px;
   border-radius: var(--radius);
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   transition: var(--transition);
-  border: 1px solid transparent;
+  border: 1px solid var(--primary);
 }
 
 .feature-card:hover {
   transform: translateY(-5px);
-  border-color: var(--primary);
 }
 
 .feature-icon {
@@ -385,12 +398,26 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #2a2a2a;
+  padding: 30px 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: linear-gradient(135deg, #d9b558, #ff9900);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(217, 181, 88, 0.3);
 }
 
 .stat-item svg {
   margin-bottom: 15px;
   height: 50px;
   width: auto;
+  fill: #f8f7f3;
+}
+
+.stat-item:hover svg {
   fill: var(--text-dark);
 }
 
@@ -400,43 +427,57 @@ a {
   margin-bottom: 5px;
 }
 
+.stat-item:hover h3 {
+  color: var(--text-dark);
+}
+
 .stat-item p {
   font-size: 1.1rem;
   font-weight: 700;
+  color: #f8f7f3;
+}
+
+.stat-item:hover p {
+  color: var(--text-dark);
 }
 
 /* =========================================
            FAQ
            ========================================= */
 .faq {
-  padding: 80px 0;
-  background-color: var(--bg-light);
+  padding: 80px 20px;
+  background-color: #1f1f1f;
   text-align: center;
 }
 
 .faq h2 {
   font-size: 2rem;
   margin-bottom: 10px;
+  color: #f8f7f3;
 }
 
 .faq > p {
   margin-bottom: 40px;
-  color: var(--text-muted);
+  color: #999;
 }
 
 .faq-container {
   max-width: 800px;
   margin: 0 auto 40px auto;
   text-align: left;
+  background-color: #2a2a2a;
+  padding: 30px;
+  border-radius: 12px;
 }
 
 details {
-  background-color: var(--bg-white);
+  background-color: #1f1f1f;
   margin-bottom: 15px;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: none;
   overflow: hidden;
   transition: all 0.3s ease;
+  border: 1px solid #444;
 }
 
 summary {
@@ -450,6 +491,7 @@ summary {
   align-items: center;
   text-transform: uppercase;
   font-size: 0.95rem;
+  color: #d9b558;
 }
 
 summary::-webkit-details-marker {
@@ -469,8 +511,8 @@ details[open] summary::after {
 
 details .faq-content {
   padding: 0 20px 20px 20px;
-  color: var(--text-muted);
-  border-top: 1px solid #eee;
+  color: #ccc;
+  border-top: 1px solid #444;
   margin-top: 10px;
   padding-top: 15px;
 }
